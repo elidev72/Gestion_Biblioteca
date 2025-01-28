@@ -6,6 +6,7 @@ class Libro(db.Model):
     anio = db.Column(db.Integer, nullable=False)
     autor_id = db.Column(db.Integer, db.ForeignKey('autor.id'), nullable=False)
     genero_id = db.Column(db.Integer, db.ForeignKey('genero.id'), nullable=False)
+    stock = db.relationship('LibroStock', backref='libro', uselist=False, lazy='noload')
 
     def __repr__(self):
         return f"Libro(id='{self.id}', nombre='{self.nombre}', anio='{self.anio}', autor_id='{self.autor_id}', genero_id='{self.genero_id}')"

@@ -4,7 +4,7 @@ class LibroStock(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     total = db.Column(db.Integer, nullable=False)
     prestados = db.Column(db.Integer, default=0)
-    libro_id = db.Column(db.Integer, db.ForeignKey('libro.id'), nullable=False)
+    libro_id = db.Column(db.Integer, db.ForeignKey('libro.id'), unique=True, nullable=False)
     
     def prestar_libro(self) -> bool:
         prestado = False
