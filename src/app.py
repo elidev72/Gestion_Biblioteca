@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_migrate import Migrate
 from src.database.db_mysql import db, url_db
+from src.models import *
 
 app = Flask(__name__)
 

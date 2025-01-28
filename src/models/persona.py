@@ -1,7 +1,11 @@
-from abc import ABC, abstractmethod
+from abc import ABCMeta, abstractmethod
 from src.database.db_mysql import db
 
-class Persona(ABC, db.Model):
+class PersonaMeta(ABCMeta, type(db.Model)):
+    pass
+
+class Persona(db.Model, metaclass=PersonaMeta):
+    __abstract__ = True
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(50), nullable=False)
     apellido = db.Column(db.String(50), nullable=False)
