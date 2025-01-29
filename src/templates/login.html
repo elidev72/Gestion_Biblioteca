@@ -3,7 +3,46 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-    <h1 class="title is-1 has-text-centered">Inicio de sesión</h1>
-    <br>
-    
+<section class="section m-6">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <div class="box is-link">
+
+                    <h1 class="title has-text-centered">Login</h1>
+
+                    <form method="post">
+                        <div class="field">
+                            <label class="label">Nombre</label>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Nombre" name="nombre">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Apellido</label>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Apellido" name="apellido">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Clave</label>
+                            <div class="control">
+                                <input class="input" type="password" placeholder="Clave" name="clave">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary">Entrar</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

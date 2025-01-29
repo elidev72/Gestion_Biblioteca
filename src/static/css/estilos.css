@@ -1,0 +1,17 @@
+.footer-fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    
+}
+
+body.login-page {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Asegura de que el body ocupe toda la altura de la ventana */
+    background-image: url('../img/biblioteca.jpg');
+    background-size: cover;
+    background-position: center center; /* Centra la imagen */
+    background-repeat: no-repeat;
+}

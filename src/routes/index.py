@@ -1,5 +1,4 @@
 from flask import render_template, redirect, url_for, request, session, flash
-from werkzeug.utils import redirect
 import bcrypt
 from src.app import app
 from src.models.bibliotecario import Bibliotecario
@@ -15,7 +14,7 @@ def inicio():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    retorno = render_template('login.html')
+    retorno = render_template('login.html', login_page=True)
     
     if request.method == 'POST':
         nombre = request.form['nombre']
