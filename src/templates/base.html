@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <header class="navbar is-success">
+    <header class="navbar is-info">
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
                 <img src="{{ url_for('static', filename='img/Books-Free-PNG-Image.png') }}" alt="Logo">
@@ -24,7 +24,9 @@
             <div class="navbar-end">
                 {% if username %}
                 <span class="navbar-item">Hola, {{ username }}!</span>
-                <a class="button is-danger is-dark m-2" href="/logout">Cerrar sesión</a>
+                <a class="button is-danger m-2" href="/logout">Cerrar sesión</a>
+                {% else %}
+                <a class="button is-primary m-2" href="/login">Iniciar sesión</a>
                 {% endif %}
             </div>
         </div>
