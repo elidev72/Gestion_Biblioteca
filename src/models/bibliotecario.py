@@ -1,5 +1,5 @@
-from src.models.persona import Persona
 from src.database.db_mysql import db
+from .persona import Persona
 
 class Bibliotecario(Persona):
     turno = db.Column(db.String(20), nullable=False)

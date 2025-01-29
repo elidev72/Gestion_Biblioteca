@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_migrate import Migrate
-from src.database.db_mysql import db, url_db
+from src.database.db_mysql import db, url_db, llave_secreta
 from src.models import *
 
 app = Flask(__name__)
@@ -12,3 +12,5 @@ db.init_app(app)
 
 migrate = Migrate()
 migrate.init_app(app, db)
+
+app.config['SECRET_KEY'] = llave_secreta

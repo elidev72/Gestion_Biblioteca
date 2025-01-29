@@ -1,5 +1,5 @@
-from src.models.persona import Persona
 from src.database.db_mysql import db
+from .persona import Persona
 
 class Autor(Persona):
     libros = db.relationship('Libro', backref='autor', lazy='dynamic')

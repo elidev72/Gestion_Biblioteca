@@ -1,1 +1,1 @@
-from .index import inicio
+from .index import inicio, login, logout
