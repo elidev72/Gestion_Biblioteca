@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+
+    <title>{% block title %}Titulo{% endblock %}</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='img/Books-Free-PNG-Image.png') }}" type="image/png">
+</head>
+<body>
+
+    <header class="navbar is-success">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <img src="{{ url_for('static', filename='img/Books-Free-PNG-Image.png') }}" alt="Logo">
+                <h1 class="has-text-dark title is-4">Biblioteca</h1>
+            </a>
+        </div>
+
+        <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-end">
+                {% if username %}
+                <span class="navbar-item">Hola, {{ username }}!</span>
+                <a class="button is-danger is-dark m-2" href="/logout">Cerrar sesión</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="container">
+            {% block content %}
+            <!-- Contenido de la página -->
+            {% endblock %}
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>© 2025 Biblioteca. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 from src.app import app
-import src.routes.inicio
+from src.routes import *
 
 if __name__ == '__main__':
     app.run(debug=True)
