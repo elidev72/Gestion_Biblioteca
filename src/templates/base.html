@@ -11,9 +11,13 @@
 
     <link rel="icon" href="{{ url_for('static', filename='img/Books-Free-PNG-Image.png') }}" type="image/png">
 </head>
-<body {% if login_page is defined and login_page %}class="login-page"{% endif %}>
+<body
+    {% if login_page is defined and login_page %}
+        class="login-page"
+    {% endif %}
+>
 
-    <header class="navbar is-info">
+    <header class="navbar is-info is-responsive">
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
                 <img src="{{ url_for('static', filename='img/Books-Free-PNG-Image.png') }}" alt="Logo">
@@ -41,8 +45,8 @@
         </div>
     </main>
 
-    <footer class="footer py-3 footer-fixed">
-        <div class="content has-text-centered">
+    <footer class="footer py-2 footer-fixed has-background-info">
+        <div class="content has-text-centered has-text-dark">
             <p>© 2025 Biblioteca. Todos los derechos reservados.</p>
         </div>
     </footer>

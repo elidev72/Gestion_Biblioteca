@@ -1,16 +1,19 @@
-from flask import render_template, redirect, url_for, request, session, flash
+from flask import render_template, redirect, url_for, request, session
 import bcrypt
 from src.app import app
 from src.models.bibliotecario import Bibliotecario
 
 @app.route('/')
 def inicio():
+    """
     retorno = redirect(url_for('login'))
     
     if 'logged_in' in session:
         retorno = render_template('index.html', nombre=session['nombre'], apellido=session['apellido'])
     
     return retorno
+    """
+    return render_template('index.html', nombre='A', apellido='A')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -28,15 +31,11 @@ def login():
             session['nombre'] = nombre
             session['apellido'] = apellido
             session['id'] = bibliotecario.id
-            flash('Inicio de sesión exitoso', 'success')
             retorno = redirect(url_for('inicio'))
-        else:
-            flash('Credenciales incorrectas', 'danger')
 
     return retorno
 
 @app.route('/logout')
 def logout():
     session.clear()
-    flash('Has cerrado sesión', 'success')
     return redirect(url_for('login'))
