@@ -6,7 +6,8 @@ class Libro(db.Model):
     anio = db.Column(db.Integer, nullable=False)
     autor = db.Column(db.String(50), nullable=False)
     genero = db.Column(db.String(50), nullable=False)
-    stock = db.relationship('LibroStock', backref='libro', uselist=False, lazy='noload')
+    total = db.Column(db.Integer, nullable=False)
+    prestados = db.Column(db.Integer, default=0)
 
     def __repr__(self):
         return f"Libro(id='{self.id}', nombre='{self.nombre}', anio='{self.anio}', autor='{self.autor}', genero='{self.genero}')"
