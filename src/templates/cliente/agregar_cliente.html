@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Agregar cliente{% endblock %}
+
+{% block content %}
+    <h1 class="title is-1 has-text-centered has-background-dark mb-6">Agregar nuevo cliente al sistema</h1>
+    
+    <form method="post">
+        {{cf.csrf_token}}
+        <p class="mb-1">
+            <span class="has-background-dark fondo-subtitulos p-1">{{cf.nombre.label}}</span>
+            <br>
+            {{cf.nombre(size=30)}}
+        </p>
+        <p class="mb-1">
+            <span class="has-background-dark fondo-subtitulos p-1">{{cf.apellido.label}}</span>
+            <br>
+            {{cf.apellido(size=30)}}
+        </p>
+        {{cf.enviar()}}
+    </form>
+{% endblock %}
