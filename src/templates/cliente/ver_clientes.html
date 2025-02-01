@@ -14,7 +14,7 @@
                             <th class="has-text-centered">ID</th>
                             <th class="has-text-centered">Nombre</th>
                             <th class="has-text-centered">Apellido</th>
-                            <th class="has-text-centered">Prestamos</th>
+                            <th class="has-text-centered">Detalle</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,7 +30,7 @@
                                 {{c.apellido}}
                             </td>
                             <td>
-                                <a href="/cliente/{{c.id}}" class="has-text-light">Detalle</a>
+                                <a href="/cliente/{{c.id}}" class="has-text-light is-underlined">Ver</a>
                             </td>
                         </tr>
                         {% endfor %}
