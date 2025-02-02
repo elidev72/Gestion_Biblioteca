@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_migrate import Migrate
+from icecream import ic
 from src.database.db_mysql import db, url_db, llave_secreta
 from src.models import *
 
@@ -14,3 +15,5 @@ migrate = Migrate()
 migrate.init_app(app, db)
 
 app.config['SECRET_KEY'] = llave_secreta
+
+# ic.disable()

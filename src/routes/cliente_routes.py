@@ -1,7 +1,6 @@
 from flask import render_template, request, redirect, url_for
-from src.app import app, db
-from src.models.cliente import Cliente
-from src.forms.cliente_form import ClienteForm
+from src.app import app
+from src.services.cliente_service import ClienteService, ClienteForm
 
 @app.route('/clientes')
 def opciones_cliente():
@@ -9,24 +8,19 @@ def opciones_cliente():
 
 @app.route('/clientes/agregar', methods=['GET', 'POST'])
 def agregar_cliente():
-    cliente = Cliente()
-    cliente_form = ClienteForm(obj=cliente)
+    cliente_form = ClienteForm()
     retorno = render_template('/cliente/agregar_cliente.html', nombre='A', apellido='A', cf=cliente_form)
     
     if request.method == 'POST':
         if cliente_form.validate_on_submit():
-            cliente_form.populate_obj(cliente)
-            db.session.add(cliente)
-            db.session.commit()
-            
+            ClienteService.crear_cliente(cliente_form)
             retorno = redirect(url_for('opciones_cliente'))
     
     return retorno
 
 @app.route('/clientes/ver')
 def ver_clientes():
-    clientes = Cliente.query.all()
-    return render_template('/cliente/ver_clientes.html', nombre='A', apellido='A', clientes=clientes)
+    return render_template('/cliente/ver_clientes.html', nombre='A', apellido='A', clientes=ClienteService.traer_clientes())
 
 @app.route('/cliente/<int:id>')
 def detalle_cliente(id: int):
