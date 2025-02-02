@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Agregar Libro{% endblock %}
+
+{% block content %}
+    <h1 class="title is-1 has-text-centered has-background-dark mb-6">Agregar nuevo libro al sistema</h1>
+    
+    <form method="post">
+        {{lf.csrf_token}}
+        <p class="mb-1">
+            <span class="has-background-dark fondo-subtitulos p-1">{{lf.nombre.label}}</span>
+            <br>
+            {{lf.nombre(size=30)}}
+        </p>
+        <p class="mb-1">
+            <span class="has-background-dark fondo-subtitulos p-1">{{lf.anio.label}}</span>
+            <br>
+            {{lf.anio(size=30)}}
+        </p>
+        <p class="mb-1">
+            <span class="has-background-dark fondo-subtitulos p-1">{{lf.autor.label}}</span>
+            <br>
+            {{lf.autor(size=30)}}
+        </p>
+        <p class="mb-1">
+            <span class="has-background-dark fondo-subtitulos p-1">{{lf.genero.label}}</span>
+            <br>
+            {{lf.genero(size=30)}}
+        </p>
+        <p class="mb-1">
+            <span class="has-background-dark fondo-subtitulos p-1">{{lf.total.label}}</span>
+            <br>
+            {{lf.total(size=30)}}
+        </p>
+        {{lf.enviar()}}
+        <a href="{{url_for('opciones_libros')}}" class="button is-danger">Cancelar</a>
+    </form>
+    
+{% endblock %}

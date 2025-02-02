@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Libros{% endblock %}
+
+{% block content %}
+    <h1 class="title is-1 has-text-centered has-background-dark mb-5">Libros</h1>
+    <a href="{{url_for('opciones_libros')}}" class="button is-danger my-3">Volver</a>
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <table class="table is-striped is-bordered is-hoverable is-fullwidth">
+                    <thead>
+                        <tr class="is-dark">
+                            <th class="has-text-centered">ID</th>
+                            <th class="has-text-centered">Nombre</th>
+                            <th class="has-text-centered">Autor</th>
+                            <th class="has-text-centered">Genero</th>
+                            <th class="has-text-centered">Total</th>
+                            <th class="has-text-centered">Prestados</th>
+                            <th class="has-text-centered">Disponibles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for l in libros %}
+                        <tr class="has-background-info-30 has-text-centered">
+                            <td>
+                                {{l.id}}
+                            </td>
+                            <td>
+                                {{l.nombre}}
+                            </td>
+                            <td>
+                                {{l.autor}}
+                            </td>
+                            <td>
+                                {{l.genero}}
+                            </td>
+                            <td>
+                                {{l.total}}
+                            </td>
+                            <td>
+                                {{l.prestados}}
+                            </td>
+                            <td>
+                                {{ l.total - l.prestados }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
