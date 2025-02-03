@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, request, session
 import bcrypt
 from src.app import app
-from src.models.bibliotecario import Bibliotecario
+from src.repositories.bibliotecario_repository import BibliotecarioRepository as br
 
 @app.route('/')
 def inicio():
@@ -24,7 +24,7 @@ def login():
         apellido = request.form['apellido']
         clave = request.form['clave']
 
-        bibliotecario = Bibliotecario.query.filter_by(nombre=nombre, apellido=apellido).first()
+        bibliotecario = br.traer_por_nombre_y_apellido(nombre=nombre, apellido=apellido)
         
         if bibliotecario and bcrypt.checkpw(clave.encode('utf-8'), bibliotecario.clave.encode('utf-8')):
             session['logged_in'] = True

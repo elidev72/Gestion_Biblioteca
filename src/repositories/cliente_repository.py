@@ -2,7 +2,7 @@ from src.app import db, ic
 from src.models.cliente import Cliente
 from src.forms.cliente_form import ClienteForm
 
-class ClienteService:
+class ClienteRepository:
     
     @staticmethod
     def crear_cliente(cliente_form: ClienteForm):
