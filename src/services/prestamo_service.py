@@ -1,19 +1,37 @@
 from datetime import date, timedelta
 from src.app import db, ic
-from src.models.prestamo import Prestamo
+from src.models import Prestamo, Libro
 from src.forms.prestamo_form import PrestamoForm
 
 class PrestamoService:
     
     @staticmethod
-    def crear_prestamo(prestamo_form: PrestamoForm, id_bibliotecario: int, id_libro: int):
-        p = Prestamo()
-        
-        prestamo_form.populate_obj(p)
-        p.bibliotecario_id = id_bibliotecario
-        p.libro_id = id_libro
-        p.fecha_inicio = date.today()
+    def crear_prestamo(prestamo_form: PrestamoForm, id_libro: int):
         cantidad_dias = prestamo_form.cantidad_dias_de_prestamo.data
-        p.fecha_fin = p.fecha_inicio + timedelta(days=int(cantidad_dias) if cantidad_dias is not None else 0)
+        fi = date.today()
+        ff = fi + timedelta(days=int(cantidad_dias) if cantidad_dias is not None else 0)
+        
+        p = Prestamo(
+            fecha_inicio=fi,
+            fecha_fin = ff,
+            # entregado = False,
+            cliente_id = prestamo_form.cliente_id.data,
+            libro_id = id_libro,
+            bibliotecario_id = '2'
+        )
         
         ic(p)
+        
+        try:
+            db.session.add(p)
+            
+            libro: Libro = Libro.query.get(id_libro)
+            if libro:
+                libro.prestados += 1
+                db.session.add(libro)
+            
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            ic(e)
+

@@ -21,3 +21,7 @@ class ClienteService:
     @staticmethod
     def traer_cliente_por_id(id: int):
         return Cliente.query.get_or_404(id)
+    
+    @staticmethod
+    def cantidad_clientes():
+        return Cliente.query.count()
