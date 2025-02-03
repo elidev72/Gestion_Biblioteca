@@ -1,6 +1,6 @@
 from src.models.bibliotecario import Bibliotecario
 
-class BibliotecarioRepository:
+class BibliotecarioService:
     
     @staticmethod
     def traer_por_nombre_y_apellido(nombre: str, apellido: str):

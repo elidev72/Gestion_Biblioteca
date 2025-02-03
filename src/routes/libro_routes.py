@@ -1,6 +1,6 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from src.app import app
-from src.repositories.libro_repository import LibroRepository as lr, LibroForm
+from src.services.libro_service import LibroService as ls, LibroForm, Libro
 
 @app.route('/libros')
 def opciones_libros():
@@ -13,11 +13,19 @@ def agregar_libro():
     
     if request.method == 'POST':
         if libro_form.validate_on_submit():
-            lr.agregar_libro(libro_form=libro_form)
+            ls.agregar_libro(libro_form=libro_form)
             retorno = redirect(url_for('opciones_libros'))
     
     return retorno
 
 @app.route('/libros/ver')
 def ver_libros():
-    return render_template('/libro/ver_libros.html', nombre='A', apellido='A', libros=lr.traer_todos())
+    return render_template('/libro/ver_libros.html', nombre='A', apellido='A', libros=ls.traer_todos())
+
+@app.route('/libros/libro/<int:id>')
+def detalle_libro(id: int):
+    libro: Libro = ls.traer_por_id(id=id)
+    
+    session['nombre_libro'] = libro.nombre
+    
+    return render_template('/libro/detalle_libro.html', nombre='A', apellido='A', libro=libro)

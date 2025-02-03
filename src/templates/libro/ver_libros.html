@@ -13,11 +13,7 @@
                         <tr class="is-dark">
                             <th class="has-text-centered">ID</th>
                             <th class="has-text-centered">Nombre</th>
-                            <th class="has-text-centered">Autor</th>
-                            <th class="has-text-centered">Genero</th>
-                            <th class="has-text-centered">Total</th>
-                            <th class="has-text-centered">Prestados</th>
-                            <th class="has-text-centered">Disponibles</th>
+                            <th class="has-text-centered">Detalle</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,19 +26,7 @@
                                 {{l.nombre}}
                             </td>
                             <td>
-                                {{l.autor}}
-                            </td>
-                            <td>
-                                {{l.genero}}
-                            </td>
-                            <td>
-                                {{l.total}}
-                            </td>
-                            <td>
-                                {{l.prestados}}
-                            </td>
-                            <td>
-                                {{ l.total - l.prestados }}
+                                <a href="{{url_for('detalle_libro', id=l.id)}}" class="has-text-light is-underlined">Ver</a>
                             </td>
                         </tr>
                         {% endfor %}

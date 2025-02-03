@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %} {{libro.nombre}} {% endblock %}
+
+{% block content %}
+    <h1 class="title is-1 has-text-centered has-background-dark mb-6">{{libro.nombre}}</h1>
+    
+    <section class="section has-background-info-80 has-text-black has-text-centered has-text-weight-semibold is-size-5 p-0">
+        <p>ID: {{libro.id}}</p>
+        <p>Nombre: {{libro.nombre}}</p>
+        <p>Año: {{libro.anio}}</p>
+        <p>Autor: {{libro.autor}}</p>
+        <p>Genero: {{libro.genero}}</p>
+        <p>Total: {{libro.total}}</p>
+        <p>Prestados: {{libro.prestados}}</p>
+        {% set disponibles =  libro.total - libro.prestados %}
+        <p>Disponibles: {{disponibles}}</p>
+    </section>
+    {% if disponibles > 0 %}
+        <a href="{{url_for('prestar_libro', id_libro=libro.id)}}" class="button is-success my-3">Prestar libro</a>
+    {% endif %}
+    <a href="{{url_for('ver_libros')}}" class="button is-danger is-dark my-3">Volver</a>
+{% endblock %}

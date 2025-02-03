@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} Prestar libro {{nombre_libro}} {% endblock %}
+
+{% block content %}
+    <h1 class="title is-1 has-text-centered has-background-dark mb-6">Prestar libro {{nombre_libro}}</h1>
+    
+    <form method="post">
+        {{pf.csrf_token}}
+        <p class="mb-1">
+            <span class="has-background-dark fondo-subtitulos p-1">{{pf.cliente_id.label}}</span>
+            <br>
+            {{pf.cliente_id(size=30)}}
+        </p>
+        {{pf.enviar()}}
+        <a href="{{url_for('detalle_libro', id=id_libro)}}" class="button is-danger">Cancelar</a>
+    </form>
+
+{% endblock %}
