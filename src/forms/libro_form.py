@@ -7,6 +7,9 @@ class LibroForm(FlaskForm):
     anio = IntegerField('Año', validators=[DataRequired()])
     autor = StringField('Autor', validators=[DataRequired()])
     genero = StringField('Genero', validators=[DataRequired()])
-    total = IntegerField('Libros totales', validators=[DataRequired(), NumberRange(min=1)])
+    total = IntegerField('Libros totales', validators=[
+        DataRequired(),
+        NumberRange(min=1, message='Para cargar un libro al sistema debe existir al menos 1 ejemplar disponible en biblioteca')
+        ])
     
     enviar = SubmitField('Enviar', render_kw={'class':'button is-success'})

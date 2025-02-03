@@ -15,7 +15,7 @@
 
     <header class="navbar is-info is-responsive">
         <div class="navbar-brand">
-            <a class="navbar-item" href="/">
+            <a class="navbar-item" href="{{url_for('inicio')}}">
                 <img src="{{ url_for('static', filename='img/Books-Free-PNG-Image.png') }}" alt="Logo">
                 <h1 class="has-text-dark title is-4">Biblioteca</h1>
             </a>
@@ -25,9 +25,9 @@
             <div class="navbar-end">
                 {% if nombre %}
                     <span class="navbar-item">Hola, {{nombre}} {{apellido}}!</span>
-                    <a class="button is-danger m-2" href="/logout">Cerrar sesión</a>
+                    <a class="button is-danger m-2" href="{{url_for('logout')}}">Cerrar sesión</a>
                 {% else %}
-                    <a class="button is-primary m-2" href="/login">Iniciar sesión</a>
+                    <a class="button is-primary m-2" href="{{url_for('login')}}">Iniciar sesión</a>
                 {% endif %}
             </div>
         </div>

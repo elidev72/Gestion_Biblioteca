@@ -12,6 +12,11 @@
             <br>
             {{pf.cliente_id(size=30)}}
         </p>
+        <p class="mb-1">
+            <span class="has-background-dark fondo-subtitulos p-1">{{pf.cantidad_dias_de_prestamo.label}}</span>
+            <br>
+            {{pf.cantidad_dias_de_prestamo(size=30)}}
+        </p>
         {{pf.enviar()}}
         <a href="{{url_for('detalle_libro', id=id_libro)}}" class="button is-danger">Cancelar</a>
     </form>
