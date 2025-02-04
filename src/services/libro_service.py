@@ -30,6 +30,8 @@ class LibroService:
             
             if libro.prestados <= libro.total:
                 db.session.add(libro)
+            elif libro.prestados < 0:
+                raise ValueError(f'Error, libros prestados no pede ser negativo: {libro.prestados}')
             else:
                 raise ValueError(f'No se puede realizar el prestamo ya que los {libro.total} ejemplares ya fueron asignados.')
             

@@ -1,19 +1,12 @@
 from flask import render_template, redirect, url_for, request, session
 import bcrypt
-from src.app import app
+from src.app import app, login_requerido
 from src.services.bibliotecario_service import BibliotecarioService as bs
 
 @app.route('/')
+# @login_requerido
 def inicio():
-    """
-    retorno = redirect(url_for('login'))
-    
-    if 'logged_in' in session:
-        retorno = render_template('index.html', nombre=session['nombre'], apellido=session['apellido'])
-    
-    return retorno
-    """
-    return render_template('index.html', nombre='A', apellido='A')
+    return render_template('index.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -30,7 +23,7 @@ def login():
             session['logged_in'] = True
             session['nombre'] = nombre
             session['apellido'] = apellido
-            session['id'] = bibliotecario.id
+            session['id_bibliotecario'] = bibliotecario.id
             retorno = redirect(url_for('inicio'))
 
     return retorno

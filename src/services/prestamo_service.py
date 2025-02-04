@@ -1,11 +1,15 @@
 from datetime import date, timedelta
-from src.app import db, ic
+from src.app import db, ic, session
 from src.utils import suma, resta
-from src.models import Prestamo, Libro
+from src.models.prestamo import Prestamo
 from src.forms.prestamo_form import PrestamoForm
 from .libro_service import LibroService as ls
 
 class PrestamoService:
+    
+    @staticmethod
+    def traer_prestamos():
+        return Prestamo.query.all()
     
     @staticmethod
     def crear_prestamo(prestamo_form: PrestamoForm, id_libro: int):
@@ -16,10 +20,9 @@ class PrestamoService:
         p = Prestamo(
             fecha_inicio=fi,
             fecha_fin = ff,
-            # entregado = False,
             cliente_id = prestamo_form.cliente_id.data,
             libro_id = id_libro,
-            bibliotecario_id = '2'
+            bibliotecario_id = session['id_bibliotecario']
         )
         
         ic(p)
@@ -31,4 +34,17 @@ class PrestamoService:
         except Exception as e:
             db.session.rollback()
             print(f'Error: {e}')
-
+    
+    @staticmethod
+    def devolver_prestamo(id_prestamo: int):
+        prestamo: Prestamo | None = Prestamo.query.get(id_prestamo)
+        
+        if prestamo:
+            try:
+                ls.actualizar_libro_prestados(id=prestamo.libro_id, callback=resta)
+                prestamo.entregado = True
+                db.session.add(prestamo)
+                db.session.commit()
+            except Exception as e:
+                db.session.rollback()
+                print(f'Error: {e}')

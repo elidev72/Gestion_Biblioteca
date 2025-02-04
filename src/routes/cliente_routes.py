@@ -4,12 +4,12 @@ from src.services.cliente_service import ClienteService as cs, ClienteForm
 
 @app.route('/clientes')
 def opciones_cliente():
-    return render_template('/cliente/opciones_clientes.html', nombre='A', apellido='A')
+    return render_template('/cliente/opciones_clientes.html')
 
 @app.route('/clientes/agregar', methods=['GET', 'POST'])
 def agregar_cliente():
     cliente_form = ClienteForm()
-    retorno = render_template('/cliente/agregar_cliente.html', nombre='A', apellido='A', cf=cliente_form)
+    retorno = render_template('/cliente/agregar_cliente.html', cf=cliente_form)
     
     if request.method == 'POST':
         if cliente_form.validate_on_submit():
@@ -20,7 +20,7 @@ def agregar_cliente():
 
 @app.route('/clientes/ver')
 def ver_clientes():
-    return render_template('/cliente/ver_clientes.html', nombre='A', apellido='A', clientes=cs.traer_clientes())
+    return render_template('/cliente/ver_clientes.html', clientes=cs.traer_clientes())
 
 @app.route('/cliente/<int:id>')
 def detalle_cliente(id: int):

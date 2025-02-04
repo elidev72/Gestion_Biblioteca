@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Historial de Prestamos{% endblock %}
+
+{% block content %}
+    <h1 class="title is-1 has-text-centered has-background-dark mb-6">Historial de Prestamos</h1>
+    <a href="{{url_for('inicio')}}" class="button is-danger is-dark my-3">Volver</a>
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <table class="table is-striped is-bordered is-hoverable is-fullwidth">
+                    <thead>
+                        <tr class="is-dark">
+                            <th class="has-text-centered">ID</th>
+                            <th class="has-text-centered">Fecha Inicio</th>
+                            <th class="has-text-centered">Fecha Fin</th>
+                            <th class="has-text-centered">Bibliotecario ID</th>
+                            <th class="has-text-centered">Cliente ID</th>
+                            <th class="has-text-centered">Libro ID</th>
+                            <th class="has-text-centered">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in prestamos %}
+                        <tr class="has-background-info-30 has-text-centered">
+                            <td>
+                                {{p.id}}
+                            </td>
+                            <td>
+                                {{p.fecha_inicio}}
+                            </td>
+                            <td>
+                                {{p.fecha_fin}}
+                            </td>
+                            <td>
+                                {{p.bibliotecario_id}}
+                            </td>
+                            <td>
+                                {{p.cliente_id}}
+                            </td>
+                            <td>
+                                {{p.libro_id}}
+                            </td>
+                            <td>
+                                {% if p.entregado %}
+                                    <button class="button is-success" title="Disabled button" disabled>
+                                        Entregado
+                                    </button>
+                                {% else %}
+                                    <form action="{{ url_for('guardar_dato') }}" method="post">
+                                        <input type="hidden" name="id_prestamo" value="{{p.id}}">
+                                        <button type="submit" class="button is-danger">
+                                            Entregar
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

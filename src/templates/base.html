@@ -23,8 +23,8 @@
 
         <div id="navbarMenu" class="navbar-menu">
             <div class="navbar-end">
-                {% if nombre %}
-                    <span class="navbar-item">Hola, {{nombre}} {{apellido}}!</span>
+                {% if session.get('nombre') %}
+                    <span class="navbar-item">Hola, {{session.get('nombre')}} {{session.get('apellido')}}!</span>
                     <a class="button is-danger m-2" href="{{url_for('logout')}}">Cerrar sesión</a>
                 {% else %}
                     <a class="button is-primary m-2" href="{{url_for('login')}}">Iniciar sesión</a>
