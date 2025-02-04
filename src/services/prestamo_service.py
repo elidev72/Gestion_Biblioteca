@@ -1,7 +1,9 @@
 from datetime import date, timedelta
 from src.app import db, ic
+from src.utils import suma, resta
 from src.models import Prestamo, Libro
 from src.forms.prestamo_form import PrestamoForm
+from .libro_service import LibroService as ls
 
 class PrestamoService:
     
@@ -23,15 +25,10 @@ class PrestamoService:
         ic(p)
         
         try:
+            ls.actualizar_libro_prestados(id=id_libro, callback=suma)
             db.session.add(p)
-            
-            libro: Libro = Libro.query.get(id_libro)
-            if libro:
-                libro.prestados += 1
-                db.session.add(libro)
-            
             db.session.commit()
         except Exception as e:
             db.session.rollback()
-            ic(e)
+            print(f'Error: {e}')
 
