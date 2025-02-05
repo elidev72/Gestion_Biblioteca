@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for
-from src.app import app, login_requerido
+from src.app import app
+from src.utils import login_requerido
 from src.services.prestamo_service import PrestamoService as ps, PrestamoForm
 from src.models import Libro
 

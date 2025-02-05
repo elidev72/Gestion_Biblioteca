@@ -1,7 +1,8 @@
 from datetime import datetime
 from flask import render_template, redirect, url_for, request, session
 import bcrypt
-from src.app import app, login_requerido
+from src.app import app
+from src.utils import login_requerido
 from src.services.bibliotecario_service import BibliotecarioService as bs
 
 @app.route('/')

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Error {{numero}}{% endblock %}
+
+{% block content %}
+    <h1 class="title is-1 has-text-centered has-background-dark mb-6">Error {{numero}}</h1>
+    
+    <section class="section has-background-info-80 has-text-black has-text-centered has-text-weight-semibold is-size-5 p-0">
+        <p>
+            {{error}}
+        </p>
+    </section>
+{% endblock %}

@@ -1,5 +1,6 @@
 from datetime import date, timedelta
-from src.app import db, ic, session
+from src.app import db, ic
+from flask import session
 from src.utils import suma, resta
 from src.models.prestamo import Prestamo
 from src.forms.prestamo_form import PrestamoForm

@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for
-from src.app import app, login_requerido
+from src.app import app
+from src.utils import login_requerido
 from src.services.cliente_service import ClienteService as cs, ClienteForm
 
 @app.route('/clientes')
