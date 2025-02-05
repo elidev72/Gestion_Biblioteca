@@ -1,12 +1,14 @@
 from flask import render_template, request, redirect, url_for
-from src.app import app
+from src.app import app, login_requerido
 from src.services.cliente_service import ClienteService as cs, ClienteForm
 
 @app.route('/clientes')
+@login_requerido
 def opciones_cliente():
     return render_template('/cliente/opciones_clientes.html')
 
 @app.route('/clientes/agregar', methods=['GET', 'POST'])
+@login_requerido
 def agregar_cliente():
     cliente_form = ClienteForm()
     retorno = render_template('/cliente/agregar_cliente.html', operacion='Agregar', cf=cliente_form)
@@ -19,10 +21,12 @@ def agregar_cliente():
     return retorno
 
 @app.route('/clientes/ver')
+@login_requerido
 def ver_clientes():
     return render_template('/cliente/ver_clientes.html', clientes=cs.traer_clientes())
 
 @app.route('/clientes/editar/<int:id>', methods=['GET', 'POST'])
+@login_requerido
 def editar_cliente(id: int):
     cliente = cs.traer_cliente_por_id(id=id)
     cliente_form = ClienteForm()

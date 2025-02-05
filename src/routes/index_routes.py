@@ -5,7 +5,7 @@ from src.app import app, login_requerido
 from src.services.bibliotecario_service import BibliotecarioService as bs
 
 @app.route('/')
-# @login_requerido
+@login_requerido
 def inicio():
     return render_template('index.html')
 

@@ -4,6 +4,7 @@ from src.services.prestamo_service import PrestamoService as ps, PrestamoForm
 from src.models import Libro
 
 @app.route('/libros/libro/<int:id_libro>/prestar', methods=['GET', 'POST'])
+@login_requerido
 def prestar_libro(id_libro: int):
     prestamo_form = PrestamoForm()
     l: Libro = Libro.query.get_or_404(id_libro)
@@ -17,6 +18,7 @@ def prestar_libro(id_libro: int):
     return retorno
 
 @app.route('/prestamos')
+@login_requerido
 def historial_prestamos():
     return render_template('/prestamo/ver_prestamos.html', prestamos=ps.traer_prestamos())
 

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Agregar Libro{% endblock %}
+{% block title %}{{operacion}} Libro{% endblock %}
 
 {% block content %}
-    <h1 class="title is-1 has-text-centered has-background-dark mb-6">Agregar libro</h1>
+    <h1 class="title is-1 has-text-centered has-background-dark mb-6">{{operacion}} libro</h1>
     
     <form method="post">
         {{lf.csrf_token}}
@@ -33,7 +33,7 @@
             {{lf.total(size=30)}}
         </p>
         {{lf.enviar()}}
-        <a href="{{url_for('opciones_libros')}}" class="button is-danger">Cancelar</a>
+        <a href="{{url_for('opciones_libros') if operacion == 'Agregar' else url_for('detalle_libro', id=id_libro)}}" class="button is-danger">Cancelar</a>
     </form>
     
 {% endblock %}

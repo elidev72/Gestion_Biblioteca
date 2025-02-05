@@ -35,3 +35,9 @@ class LibroService:
             
         else:
             raise ValueError(f'No existe el libro con ID {id}')
+        
+    @staticmethod
+    def editar_libro(libro: Libro, libro_form: LibroForm) -> None:
+        if libro:
+            libro_form.populate_obj(libro)
+            db.session.commit()

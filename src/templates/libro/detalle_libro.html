@@ -19,5 +19,6 @@
     {% if disponibles > 0 %}
         <a href="{{url_for('prestar_libro', id_libro=libro.id)}}" class="button is-success my-3">Prestar libro</a>
     {% endif %}
+    <a href="{{url_for('editar_libro', id=libro.id)}}" class="button is-primary my-3">Editar libro</a>
     <a href="{{url_for('ver_libros')}}" class="button is-danger is-dark my-3">Volver</a>
 {% endblock %}

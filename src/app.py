@@ -19,10 +19,10 @@ app.config['SECRET_KEY'] = llave_secreta
 
 def login_requerido(f):
     @wraps(f) # Esto ayuda a mantener la información del nombre de la función original
-    def funcion_decoradora(*args, **kwargs):
+    def funcion_decorada(*args, **kwargs):
         if 'logged_in' not in session:
             return redirect(url_for('login')) 
         return f(*args, **kwargs) # Llama a la función original si está logueado
-    return funcion_decoradora
+    return funcion_decorada
 
-# ic.disable()
+ic.disable()
