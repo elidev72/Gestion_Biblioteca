@@ -26,7 +26,7 @@ Una aplicación para bibliotecarios que permite gestionar libros, clientes, pré
    cd Gestion_Biblioteca
    ```
 
-2. Crea un entorno virtual (opcional pero recomendado):
+2. Crea un entorno virtual:
    ```bash
    python -m venv .venv
    source .venv/bin/activate  # En Windows usa `.venv\Scripts\activate`
