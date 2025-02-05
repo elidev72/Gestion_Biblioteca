@@ -28,7 +28,7 @@ Una aplicación para bibliotecarios que permite gestionar libros, clientes, pré
 
 2. Crea un entorno virtual:
    ```bash
-   python -m venv .venv
+   python3 -m venv .venv
    source .venv/bin/activate  # En Windows usa `.venv\Scripts\activate`
    ```
 
