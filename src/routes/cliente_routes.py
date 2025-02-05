@@ -9,7 +9,7 @@ def opciones_cliente():
 @app.route('/clientes/agregar', methods=['GET', 'POST'])
 def agregar_cliente():
     cliente_form = ClienteForm()
-    retorno = render_template('/cliente/agregar_cliente.html', cf=cliente_form)
+    retorno = render_template('/cliente/agregar_cliente.html', operacion='Agregar', cf=cliente_form)
     
     if request.method == 'POST':
         if cliente_form.validate_on_submit():
@@ -22,6 +22,15 @@ def agregar_cliente():
 def ver_clientes():
     return render_template('/cliente/ver_clientes.html', clientes=cs.traer_clientes())
 
-@app.route('/cliente/<int:id>')
-def detalle_cliente(id: int):
-    pass
+@app.route('/clientes/editar/<int:id>', methods=['GET', 'POST'])
+def editar_cliente(id: int):
+    cliente = cs.traer_cliente_por_id(id=id)
+    cliente_form = ClienteForm()
+    retorno = render_template('/cliente/agregar_cliente.html', operacion='Editar', cf=cliente_form)
+    
+    if request.method == 'POST':
+        if cliente_form.validate_on_submit():
+            cs.editar_cliente(cliente=cliente, cliente_form=cliente_form)
+            retorno = redirect(url_for('ver_clientes'))
+    
+    return retorno

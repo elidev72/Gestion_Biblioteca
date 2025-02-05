@@ -28,12 +28,10 @@ class LibroService:
         if libro:
             libro.prestados = callback(libro.prestados, 1)
             
-            if libro.prestados <= libro.total:
-                db.session.add(libro)
+            if libro.prestados > libro.total:
+                raise ValueError(f'No se puede realizar el prestamo ya que los {libro.total} ejemplares ya fueron asignados.')
             elif libro.prestados < 0:
                 raise ValueError(f'Error, libros prestados no pede ser negativo: {libro.prestados}')
-            else:
-                raise ValueError(f'No se puede realizar el prestamo ya que los {libro.total} ejemplares ya fueron asignados.')
             
         else:
             raise ValueError(f'No existe el libro con ID {id}')

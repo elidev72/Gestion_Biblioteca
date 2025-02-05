@@ -43,8 +43,9 @@ class PrestamoService:
             try:
                 ls.actualizar_libro_prestados(id=prestamo.libro_id, callback=resta)
                 prestamo.entregado = True
-                db.session.add(prestamo)
                 db.session.commit()
-            except Exception as e:
+            except Exception:
                 db.session.rollback()
-                print(f'Error: {e}')
+                raise
+        else:
+            raise ValueError(f'No existe prestamo con id {id_prestamo}')

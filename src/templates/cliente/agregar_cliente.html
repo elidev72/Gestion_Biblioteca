@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Agregar cliente{% endblock %}
+{% block title %}{{operacion}} cliente{% endblock %}
 
 {% block content %}
-    <h1 class="title is-1 has-text-centered has-background-dark mb-6">Agregar nuevo cliente al sistema</h1>
+    <h1 class="title is-1 has-text-centered has-background-dark mb-6">{{operacion}} cliente</h1>
     
     <form method="post">
         {{cf.csrf_token}}
@@ -18,7 +18,7 @@
             {{cf.apellido(size=30)}}
         </p>
         {{cf.enviar()}}
-        <a href="{{url_for('opciones_cliente')}}" class="button is-danger">Cancelar</a>
+        <a href="{{url_for('opciones_cliente') if operacion == 'Agregar' else url_for('ver_clientes')}}" class="button is-danger">Cancelar</a>
     </form>
     
 {% endblock %}

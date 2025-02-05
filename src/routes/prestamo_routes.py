@@ -24,6 +24,9 @@ def historial_prestamos():
 def guardar_dato():
     id_prestamo = request.form['id_prestamo']
     
-    ps.devolver_prestamo(id_prestamo=id_prestamo)
+    try:
+        ps.devolver_prestamo(id_prestamo=id_prestamo)
+    except Exception as e:
+        print(f'Error: {e}')
     
     return redirect(url_for('historial_prestamos'))

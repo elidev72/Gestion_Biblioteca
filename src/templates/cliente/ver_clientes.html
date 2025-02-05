@@ -14,7 +14,7 @@
                             <th class="has-text-centered">ID</th>
                             <th class="has-text-centered">Nombre</th>
                             <th class="has-text-centered">Apellido</th>
-                            <th class="has-text-centered">Detalle</th>
+                            <th class="has-text-centered">Editar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,7 +30,7 @@
                                 {{c.apellido}}
                             </td>
                             <td>
-                                <a href="/cliente/{{c.id}}" class="has-text-light is-underlined">Ver</a>
+                                <a href="{{url_for('editar_cliente', id=c.id)}}" class="has-text-light is-underlined">Ir</a>
                             </td>
                         </tr>
                         {% endfor %}

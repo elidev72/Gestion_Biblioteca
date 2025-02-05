@@ -25,3 +25,9 @@ class ClienteService:
     @staticmethod
     def cantidad_clientes():
         return Cliente.query.count()
+    
+    @staticmethod
+    def editar_cliente(cliente: Cliente, cliente_form: ClienteForm):       
+        if cliente:
+            cliente_form.populate_obj(cliente)
+            db.session.commit()
