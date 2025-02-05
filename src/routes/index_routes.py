@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import render_template, redirect, url_for, request, session
 import bcrypt
 from src.app import app, login_requerido
@@ -10,6 +11,7 @@ def inicio():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    session['anio'] = datetime.now().year
     retorno = render_template('login.html', login_page=True)
     
     if request.method == 'POST':
