@@ -4,6 +4,8 @@
 Una aplicación para bibliotecarios que permite gestionar libros, clientes, préstamos y devoluciones.
 
 ### Diagrama de Clases
+![Diagrama de clases](SGB.png)
+
 
 ### Tecnologías Utilizadas
 - Flask v3.1
@@ -37,7 +39,7 @@ Una aplicación para bibliotecarios que permite gestionar libros, clientes, pré
    pip install -r requirements.txt
    ```
 
-4. Importar la base de datos del repositorio.
+4. Importar la base de datos del repositorio en MySQL (sgb.sql)
 
 5. Configurar Variables de Entorno:
     - En la carpeta principal de tu proyecto, crea un archivo llamado `.env`.
