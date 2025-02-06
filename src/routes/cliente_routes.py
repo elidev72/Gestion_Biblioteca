@@ -30,7 +30,7 @@ def ver_clientes():
 @login_requerido
 def editar_cliente(id: int):
     cliente = cs.traer_cliente_por_id(id=id)
-    cliente_form = ClienteForm()
+    cliente_form = ClienteForm(obj=cliente)
     retorno = render_template('/cliente/agregar_cliente.html', operacion='Editar', cf=cliente_form)
     
     if request.method == 'POST':

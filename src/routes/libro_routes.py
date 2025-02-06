@@ -35,7 +35,7 @@ def detalle_libro(id: int):
 @login_requerido
 def editar_libro(id: int):
     libro = ls.traer_por_id(id=id)
-    libro_form = LibroForm()
+    libro_form = LibroForm(obj=libro)
     retorno = render_template('/libro/agregar_libro.html', operacion='Editar', lf=libro_form, id_libro=id)
     
     if request.method == 'POST':
