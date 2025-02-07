@@ -1,5 +1,5 @@
 from typing import Callable, List
-from src.app import db
+from src.database.db_mysql import actualizar, guardar
 from src.models.libro import Libro
 from src.forms.libro_form import LibroForm
 
@@ -14,8 +14,7 @@ class LibroService:
         l = Libro()
         
         libro_form.populate_obj(l)
-        db.session.add(l)
-        db.session.commit()
+        guardar(l)
     
     @staticmethod
     def traer_por_id(id: int) -> Libro:
@@ -40,4 +39,4 @@ class LibroService:
     def editar_libro(libro: Libro, libro_form: LibroForm) -> None:
         if libro:
             libro_form.populate_obj(libro)
-            db.session.commit()
+            actualizar(libro)

@@ -16,7 +16,11 @@ def agregar_libro():
     
     if request.method == 'POST':
         if libro_form.validate_on_submit():
-            ls.agregar_libro(libro_form=libro_form)
+            try:
+                ls.agregar_libro(libro_form=libro_form)
+            except Exception as e:
+                print(f'Error: {e}')
+                
             retorno = redirect(url_for('opciones_libros'))
     
     return retorno
@@ -40,7 +44,11 @@ def editar_libro(id: int):
     
     if request.method == 'POST':
         if libro_form.validate_on_submit():
-            ls.editar_libro(libro=libro ,libro_form=libro_form)
+            try:
+                ls.editar_libro(libro=libro ,libro_form=libro_form)
+            except Exception as e:
+                print(f'Error: {e}')
+                
             retorno = redirect(url_for('detalle_libro', id=id))
     
     return retorno

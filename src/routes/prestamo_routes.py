@@ -13,7 +13,10 @@ def prestar_libro(id_libro: int):
     
     if request.method == 'POST':
         if prestamo_form.validate_on_submit():
-            ps.crear_prestamo(prestamo_form=prestamo_form, id_libro=id_libro)
+            try:
+                ps.crear_prestamo(prestamo_form=prestamo_form, id_libro=id_libro)
+            except Exception as e:
+                print(f'Error: {e}')
             retorno = redirect(url_for('detalle_libro', id=id_libro))
             
     return retorno

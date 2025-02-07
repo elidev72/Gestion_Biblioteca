@@ -1,6 +1,7 @@
-from src.app import db, ic
+from src.app import ic
 from src.models.cliente import Cliente
 from src.forms.cliente_form import ClienteForm
+from src.database.db_mysql import guardar, actualizar
 
 class ClienteService:
     
@@ -9,10 +10,8 @@ class ClienteService:
         c = Cliente()
         
         cliente_form.populate_obj(c)
-        db.session.add(c)
-        db.session.commit()
-        
         ic(c)
+        guardar(c)
     
     @staticmethod
     def traer_clientes():
@@ -30,4 +29,4 @@ class ClienteService:
     def editar_cliente(cliente: Cliente, cliente_form: ClienteForm):       
         if cliente:
             cliente_form.populate_obj(cliente)
-            db.session.commit()
+            actualizar(cliente)

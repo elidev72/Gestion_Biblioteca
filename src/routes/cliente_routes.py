@@ -16,7 +16,11 @@ def agregar_cliente():
     
     if request.method == 'POST':
         if cliente_form.validate_on_submit():
-            cs.crear_cliente(cliente_form)
+            try:
+                cs.crear_cliente(cliente_form)
+            except Exception as e:
+                print(f'Error: {e}')
+                
             retorno = redirect(url_for('opciones_cliente'))
     
     return retorno
@@ -35,7 +39,11 @@ def editar_cliente(id: int):
     
     if request.method == 'POST':
         if cliente_form.validate_on_submit():
-            cs.editar_cliente(cliente=cliente, cliente_form=cliente_form)
+            try:
+                cs.editar_cliente(cliente=cliente, cliente_form=cliente_form)
+            except Exception as e:
+                print(f'Error: {e}')
+                
             retorno = redirect(url_for('ver_clientes'))
     
     return retorno
